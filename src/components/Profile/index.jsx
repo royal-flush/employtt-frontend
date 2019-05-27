@@ -14,8 +14,8 @@ import Grid from '@material-ui/core/Grid';
 const styles = {
   avatar: {
     margin: 10,
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
   },
 };
 class EmployTT extends React.Component {
