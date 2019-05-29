@@ -19,11 +19,6 @@ const styles = {
   },
 };
 class EmployTT extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {height: props.height};
-  }
-  
   render(){
     const { classes } = this.props;
 
