@@ -2,7 +2,6 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import './styles.css'
 import Grid from '@material-ui/core/Grid';
 export default class CreateJob extends React.Component{
 
