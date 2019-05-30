@@ -155,7 +155,7 @@ class EmployTT extends React.Component {
           </div>
           <Divider />
           <List>
-            <Link to ='/profile' style={{ textDecoration: 'none' }}>
+            <Link to ='/user/profile' style={{ textDecoration: 'none' }}>
               <ListItem button key="Profile" onClick={this.handleDrawerClose}>      
                 <ListItemIcon>
                   <AccountCircle /> 
@@ -185,7 +185,7 @@ class EmployTT extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/user/profile" component={Profile}/>
             <Route path="/notifications" component={Notification} />
         </main>
       </div>
