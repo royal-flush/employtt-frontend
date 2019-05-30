@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
+import axios from "axios";
 
 const styles = {
   avatar: {
@@ -19,6 +20,35 @@ const styles = {
   },
 };
 class EmployTT extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      address: "",
+      email: "",
+      number: "",
+      photo: "",
+    };
+  }
+
+  componentWillMount() {
+    axios.get("http://localhost:80/api/name").then(doc => {
+      this.setState({ name: doc.data });
+    });
+    axios.get("http://localhost:80/api/addr").then(doc => {
+    this.setState({ address: doc.data });
+    });
+    axios.get("http://localhost:80/api/email").then(doc => {
+      this.setState({ email: doc.data });
+    });
+    axios.get("http://localhost:80/api/number").then(doc => {
+      this.setState({ number: doc.data });
+    });
+    axios.get("http://localhost:80/api/photo").then(doc => {
+      this.setState({ photo: doc.data });
+    });
+  }
+
   render(){
     const { classes } = this.props;
 
@@ -27,19 +57,19 @@ class EmployTT extends React.Component {
         <Grid container justify="center" alignItems="center">
           <Card>
             <CardActionArea>
-              <Avatar alt="Richard Stonebank" src="https://image.shutterstock.com/image-photo/handsome-unshaven-young-darkskinned-male-450w-640011838.jpg" className={classes.avatar} />        
+              <Avatar alt="Richard Stonebank" src={this.state.photo.Image} className={classes.avatar} />        
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  Richard Stonebank
+                  {this.state.name.Name}
                 </Typography>
                 <Typography variant="body1" component="p">
-                  Address: 99 Stock Street, Couva
+                  Email: <a href="mailto:{this.state.email.Email}">{this.state.email.Email}</a>
                 </Typography>
                 <Typography variant="body1" component="p">
-                  Email: <a href="mailto:Richard.Stonebank@gmail.com">Richard.Stonebank@gmail.com</a>
+                  Address: {this.state.address.Address}
                 </Typography>
                 <Typography variant="body1" component="p">
-                  Contact Number: +1 929 555 0144
+                  Contact Number: {this.state.number.PhoneContact}
                 </Typography>
               </CardContent>           
             </CardActionArea>
