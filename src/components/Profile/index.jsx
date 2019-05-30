@@ -64,7 +64,7 @@ class EmployTT extends React.Component {
                 <CardActionArea>     
                   <CardContent>
                     <Typography gutterBottom variant="h4" component="h2">
-                     resumeField.name
+                     {resumeField.name}
                     </Typography>              
                       {resumeField.map(function(item){
                         return <Typography variant="body1" component="p">
