@@ -18,7 +18,7 @@ export default class SignUp extends React.Component{
   }
   handleChange(e){
     this.setState({
-      [e.target.value]: e.target.value
+      [e.target.name]: e.target.value
     })
   }
   handleSubmit(){
