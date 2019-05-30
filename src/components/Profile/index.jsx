@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -28,6 +26,8 @@ class EmployTT extends React.Component {
       email: "",
       number: "",
       photo: "",
+      resume: "",
+      resumeFields: [],
     };
   }
 
@@ -47,10 +47,35 @@ class EmployTT extends React.Component {
     axios.get("http://localhost:80/api/photo").then(doc => {
       this.setState({ photo: doc.data });
     });
+    axios.get("http://localhost:80/api/resume").then(doc => {
+      this.setState({ resume: doc.data });
+    });
+    axios.get("http://localhost:80/api/rFields").then(doc => {
+      this.setState({ resumeFields: doc.data });
+    });
   }
 
   render(){
     const { classes } = this.props;
+    
+    var resumeLayout= this.state.resumeFields.map(function(resumeField){
+      return <Grid container>
+              <Card>
+                <CardActionArea>     
+                  <CardContent>
+                    <Typography gutterBottom variant="h4" component="h2">
+                     resumeField.name
+                    </Typography>              
+                      {resumeField.map(function(item){
+                        return <Typography variant="body1" component="p">
+                            {item}
+                        </Typography>
+                      })} 
+                  </CardContent>           
+                </CardActionArea>
+              </Card>
+            </Grid>
+    })
 
     return (
         <div>
@@ -76,16 +101,8 @@ class EmployTT extends React.Component {
           </Card>
         </Grid>
 
-        <Grid container>
-          <Card>
-            <CardActionArea>     
-              <CardContent>
-
-              </CardContent>           
-            </CardActionArea>
-          </Card>
-        </Grid>
-
+        <resumeLayout>
+        </resumeLayout>
         </div>
       );
     }
