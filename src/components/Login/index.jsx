@@ -1,14 +1,9 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid'
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActionArea from '@material-ui/core/CardActionArea';
-
 import SignUp from '../SignUp';
 
 export default class LoginScreen extends React.Component{
@@ -32,7 +27,7 @@ export default class LoginScreen extends React.Component{
   }
   render(){
     return (
-      <Grid container alignItems='center' justify='center'>
+      <Grid id='root' container direction='row' justify='center' alignItems='center'>
         <Grid item>
           <Card style={{maxWidth: 600}}>
             <h1 style={{margin:30}}>EmployTT</h1>
@@ -60,8 +55,8 @@ export default class LoginScreen extends React.Component{
                 margin="dense"
               />
               <br />
-              <Button variant='contained' color='primary' style={{margin:30}}>Login</Button>
-              <Button variant='contained' color='primary' onClick={this.handleSwitch}>Register</Button>
+              <Button variant='contained' style={{margin:30, backgroundColor: '#ee0000'}}>Login</Button>
+              <Button variant='contained' style={{backgroundColor: '#ee0000'}} onClick={this.handleSwitch}>Register</Button>
               </form>
             )}
             </CardContent>
