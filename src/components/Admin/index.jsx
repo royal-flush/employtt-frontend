@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import NoteAdd from '@material-ui/icons/NoteAdd'
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -18,11 +19,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import Notifications from '@material-ui/icons/Notifications'
 import MailIcon from '@material-ui/icons/Mail';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Profile from '../Profile';
-import Notification from '../Notification';
+import CreateJob from '../CreateJob';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -156,22 +156,22 @@ class EmployTT extends React.Component {
           <Divider />
           <List>
             <Link to ='/admin/profile' style={{ textDecoration: 'none' }}>
-              <ListItem button key="Profile" onClick={this.handleDrawerClose}>      
+              <ListItem button key="Profile" onClick={this.handleDrawerClose}>
                 <ListItemIcon>
-                  <AccountCircle /> 
+                  <AccountCircle />
                 </ListItemIcon>
                 <ListItemText primary="Profile" />
               </ListItem>
               </Link>
-              <Link to ='/admin/notifications' style={{ textDecoration: 'none' }}>
-              <ListItem button key="Profile" onClick={this.handleDrawerClose}>      
+              <Link to ='/admin/createjob' style={{ textDecoration: 'none' }}>
+              <ListItem button key="Create Job" onClick={this.handleDrawerClose}>
                 <ListItemIcon>
-                  <Notifications /> 
+                  <NoteAdd />
                 </ListItemIcon>
-                <ListItemText primary="Notifications" />
+                <ListItemText primary="Create Job" />
               </ListItem>
               </Link>
-              
+
           </List>
           <Divider />
           <List>
@@ -185,8 +185,8 @@ class EmployTT extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <Route path="/admin/profile" component={Profile} /> 
-            <Route path="/admin/notifications" component={Notification} />
+            <Route path="/admin/profile" component={Profile} />
+            <Route path="/admin/createjob" component={CreateJob} />
         </main>
       </div>
       </Router>
