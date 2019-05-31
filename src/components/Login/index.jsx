@@ -5,12 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SignUp from '../SignUp';
-<<<<<<< HEAD
 import AdminSignUp from '../AdminSignUp'
-=======
-import Axios from 'axios';
-
->>>>>>> 876e7767fa9fbf8af3c825ffc0208777dd70e155
+import axios from 'axios';
 export default class LoginScreen extends React.Component{
   constructor(){
     super()
@@ -20,10 +16,8 @@ export default class LoginScreen extends React.Component{
       sign_up:false,
       admin_sign_up:false,
     }
-    this.handleSwitch=this.handleSwitch.bind(this)
     this.handleChange=this.handleChange.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
-<<<<<<< HEAD
   }
 
   componentWillMount(){
@@ -34,23 +28,15 @@ export default class LoginScreen extends React.Component{
         password: login.password
       })
     }
-=======
-
->>>>>>> 876e7767fa9fbf8af3c825ffc0208777dd70e155
   }
   handleChange(e){
     this.setState({
       [e.target.name]: e.target.value
     })
   }
-  handleSwitch(){
-    //this.setState({[e.taget.name]: !this.state.sign_up})
-  }
   handleSubmit(){
     localStorage.setItem('user_credentails', JSON.stringify({email:this.state.email, password:this.state.password}))
-  }
-  handleSubmit(){
-    Axios.post("http://localhost:80/api/login", this.state).then(doc => {
+    axios.post("http://localhost:80/api/login", this.state).then(doc => {
       return doc;
     });
   }
@@ -65,7 +51,6 @@ export default class LoginScreen extends React.Component{
                 (this.state.sign_up ?(
                   <SignUp />
                 ):(
-<<<<<<< HEAD
                   <AdminSignUp />
                 ))
               ):(
@@ -96,32 +81,6 @@ export default class LoginScreen extends React.Component{
             <Button variant='contained' style={{backgroundColor:'#ee0000', color:'#fff'}} onClick={()=>{this.setState({admin_sign_up: !this.state.admin_sign_up})}} name='admin_sign_up' fullWidth>Register As Admin</Button>
             </form>
           )}
-=======
-                  <form>
-                  <TextField
-                    id="standard-dense"
-                    label="Email"
-                    name='email'
-                    onChange={this.handleChange}
-                    style={{margin:30}}
-                    margin="dense"
-                  />
-                  <br />
-              <TextField
-                id="standard-dense"
-                label="Password"
-                type='password'
-                name='password'
-                onChange={this.handleChange}
-                style={{margin:30}}
-                margin="dense"
-              />
-              <br />
-              <Button variant='contained' style={{margin:30, backgroundColor: '#ee0000'}} onClick={this.handleSubmit}>Login</Button>
-              <Button variant='contained' style={{backgroundColor: '#ee0000'}} onClick={this.handleSwitch}>Register</Button>
-              </form>
-            )}
->>>>>>> 876e7767fa9fbf8af3c825ffc0208777dd70e155
             </CardContent>
           </Card>
         </Grid>
