@@ -3,6 +3,10 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Add from '@material-ui/icons/Add'
+
+import axios from 'axios';
 export default class CreateJob extends React.Component{
 
   constructor(props){
@@ -27,6 +31,9 @@ export default class CreateJob extends React.Component{
   }
   handleSubmit(){
     console.log(this.state)
+    axios.post('http://localhost:80/api',this.state).then(doc=>{
+      console.log(doc.data)
+    })
   }
   handleNewInput(){
     this.setState(state =>{
@@ -110,15 +117,19 @@ export default class CreateJob extends React.Component{
           />
         ))}
         <TextField
-          id='standard-password-input'
+          id='input-with-icon-textfield'
           label='New Field'
           name='new_input'
           style={{marginBottom: 30}}
           onChange={this.handleInputChange}
+          InputProps={{
+            startAdornment:(
+              <InputAdornment position='start'>
+                <Add style={{backgroundColor: "#000000", color:'#fff', cursor:'pointer'}} onClick={this.handleNewInput}/>
+                </InputAdornment>
+              ),
+          }}
         />
-        <Button variant="contained" color="primary" onClick={this.handleNewInput}>
-            Add Field
-        </Button>
         <Button variant="contained" color="primary" onClick={this.handleSubmit}>
             Create Job
         </Button>
