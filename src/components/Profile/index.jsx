@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
+import Edit from '@material-ui/icons/Edit'
 import axios from "axios";
 
 const styles = {
@@ -88,17 +89,17 @@ class EmployTT extends React.Component {
     var resumeLayout= this.state.resumeFields.map(function(resumeField){
       return <Grid container>
               <Card>
-                <CardActionArea>     
+                <CardActionArea>
                   <CardContent>
                     <Typography gutterBottom variant="h4" component="h2">
                      {resumeField.name}
-                    </Typography>              
+                    </Typography>
                       {resumeField.map(function(item){
                         return <Typography variant="body1" component="p">
                             {item}
                         </Typography>
-                      })} 
-                  </CardContent>           
+                      })}
+                  </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
@@ -109,7 +110,7 @@ class EmployTT extends React.Component {
         {!editPCard ? (
         <Grid container justify="center" alignItems="center">
           <Card>
-            <Avatar alt="Richard Stonebank" src={this.state.Photo} className={classes.avatar} />        
+            <Avatar alt="Richard Stonebank" src={this.state.Photo} className={classes.avatar} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 Name: {this.state.Name}
@@ -125,16 +126,16 @@ class EmployTT extends React.Component {
               </Typography>
               <Grid container justify="flex-end" alignItems="center" >
                 <Fab color="secondary" aria-label="Edit" className={classes.fab} onClick={this.editProfileCard}>
-                  <Icon>edit_icon</Icon>
+                  <Edit />
                 </Fab>
-              </Grid>      
-            </CardContent>        
+              </Grid>
+            </CardContent>
           </Card>
         </Grid>
         ):(
           <Grid container justify="center" alignItems="center">
           <Card>
-            <Avatar alt="Richard Stonebank" src={this.state.Photo} className={classes.avatar} />        
+            <Avatar alt="Richard Stonebank" src={this.state.Photo} className={classes.avatar} />
             <CardContent>
                 <form>
                   <label>
@@ -153,10 +154,10 @@ class EmployTT extends React.Component {
                 </form>
               <Grid container justify="flex-end" alignItems="center" >
                 <Fab color="secondary" aria-label="Edit" className={classes.fab} onClick={this.editProfileCard}>
-                  <Icon>edit_icon</Icon>
+                  <Edit />
                 </Fab>
-              </Grid>      
-            </CardContent>    
+              </Grid>
+            </CardContent>
           </Card>
         </Grid>
         )}
@@ -170,5 +171,4 @@ EmployTT.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EmployTT) 
-  
+export default withStyles(styles)(EmployTT)
