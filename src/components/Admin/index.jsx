@@ -129,9 +129,7 @@ class EmployTT extends React.Component {
             <Typography variant="h6" color="inherit" noWrap>
               Employ
             </Typography>
-            <Typography variant="h6" style={{color:'#ee0000'}} noWrap>
-              TT
-            </Typography>
+            <Typography variant="h6" style={{color:'#ee0000'}} noWrap>TT-Admin</Typography>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -185,7 +183,7 @@ class EmployTT extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <Route path="/admin/profile" component={Profile} />
+            <Route exact path="/admin/profile" component={Profile} />
             <Route path="/admin/createjob" component={CreateJob} />
         </main>
       </div>

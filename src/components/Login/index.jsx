@@ -5,17 +5,29 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SignUp from '../SignUp';
-
+import AdminSignUp from '../AdminSignUp'
 export default class LoginScreen extends React.Component{
   constructor(){
     super()
     this.state={
       email:'',
       password:'',
-      sign_up:false
+      sign_up:false,
+      admin_sign_up:false,
     }
     this.handleSwitch=this.handleSwitch.bind(this)
     this.handleChange=this.handleChange.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
+  }
+
+  componentWillMount(){
+    const login=JSON.parse(localStorage.getItem('user_credentails'))
+    if(login){
+      this.setState({
+        email: login.email,
+        password: login.password
+      })
+    }
   }
   handleChange(e){
     this.setState({
@@ -23,7 +35,10 @@ export default class LoginScreen extends React.Component{
     })
   }
   handleSwitch(){
-    this.setState({sign_up: !this.state.sign_up})
+    //this.setState({[e.taget.name]: !this.state.sign_up})
+  }
+  handleSubmit(){
+    localStorage.setItem('user_credentails', JSON.stringify({email:this.state.email, password:this.state.password}))
   }
   render(){
     return (
@@ -32,33 +47,40 @@ export default class LoginScreen extends React.Component{
           <Card style={{maxWidth: 600}}>
             <h1 style={{margin:30}}>EmployTT</h1>
             <CardContent>
-              {this.state.sign_up ?(
-                <SignUp />
+              {this.state.sign_up || this.state.admin_sign_up?(
+                (this.state.sign_up ?(
+                  <SignUp />
                 ):(
-                  <form>
-                  <TextField
-                    id="standard-dense"
-                    label="Email"
-                    name='email'
-                    onChange={this.handleChange}
-                    style={{margin:30}}
-                    margin="dense"
-                  />
-                  <br />
-              <TextField
-                id="standard-dense"
-                label="Password"
-                type='password'
-                name='password'
-                onChange={this.handleChange}
-                style={{margin:30}}
-                margin="dense"
-              />
-              <br />
-              <Button variant='contained' style={{margin:30, backgroundColor: '#ee0000'}}>Login</Button>
-              <Button variant='contained' style={{backgroundColor: '#ee0000'}} onClick={this.handleSwitch}>Register</Button>
-              </form>
-            )}
+                  <AdminSignUp />
+                ))
+              ):(
+                <form>
+                <TextField
+                  id="standard-dense"
+                  label="Email"
+                  name='email'
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  style={{margin:30}}
+                  margin="dense"
+                />
+                <br />
+            <TextField
+              id="standard-dense"
+              label="Password"
+              type='password'
+              name='password'
+              value={this.state.password}
+              onChange={this.handleChange}
+              style={{margin:30}}
+              margin="dense"
+            />
+            <br />
+            <Button variant='contained' style={{margin:30}}color='primary' onClick={this.handleSubmit}>Login</Button>
+            <Button variant='contained' color='primary' onClick={()=>{this.setState({sign_up: !this.state.sign_up})}} name='sign_up'>Register</Button><br />
+            <Button variant='contained' style={{backgroundColor:'#ee0000', color:'#fff'}} onClick={()=>{this.setState({admin_sign_up: !this.state.admin_sign_up})}} name='admin_sign_up' fullWidth>Register As Admin</Button>
+            </form>
+          )}
             </CardContent>
           </Card>
         </Grid>

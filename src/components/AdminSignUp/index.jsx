@@ -1,17 +1,17 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-export default class SignUp extends React.Component{
+
+export default class AdminSignUp extends React.Component{
   constructor(){
     super()
     this.state={
       fname:'',
-      mname:'',
       lname:'',
       email:'',
       v_email:'',
-      dob:'',
-      password:''
+      ministry:'',
+      password:'',
     }
     this.handleChange=this.handleChange.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
@@ -39,15 +39,6 @@ export default class SignUp extends React.Component{
       />
       <TextField
         id="standard-dense"
-        label="Middle Name"
-        name='mname'
-        onChange={this.handleChange}
-        type='text'
-        style={{margin:30}}
-        margin="dense"
-      />
-      <TextField
-        id="standard-dense"
         label="Last Name"
         type='text'
         name='lname'
@@ -56,17 +47,12 @@ export default class SignUp extends React.Component{
         margin="dense"
       />
       <TextField
-        id="date"
-        label="DOB"
-        type="date"
-        defaultValue="2017-05-24"
-        name='dob'
+        id='standard-dense'
+        label='Ministry/Department/Agency'
+        type='text'
+        name='ministry'
         onChange={this.handleChange}
-        InputLabelProps={{
-          shrink: true,
-        }}
         style={{margin:30}}
-
         margin='dense'
       />
       <TextField
