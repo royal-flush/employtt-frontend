@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SignUp from '../SignUp';
+import Axios from 'axios';
 
 export default class LoginScreen extends React.Component{
   constructor(){
@@ -16,6 +17,8 @@ export default class LoginScreen extends React.Component{
     }
     this.handleSwitch=this.handleSwitch.bind(this)
     this.handleChange=this.handleChange.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
+
   }
   handleChange(e){
     this.setState({
@@ -24,6 +27,11 @@ export default class LoginScreen extends React.Component{
   }
   handleSwitch(){
     this.setState({sign_up: !this.state.sign_up})
+  }
+  handleSubmit(){
+    Axios.post("http://localhost:80/api/login", this.state).then(doc => {
+      return doc;
+    });
   }
   render(){
     return (
@@ -55,7 +63,7 @@ export default class LoginScreen extends React.Component{
                 margin="dense"
               />
               <br />
-              <Button variant='contained' style={{margin:30, backgroundColor: '#ee0000'}}>Login</Button>
+              <Button variant='contained' style={{margin:30, backgroundColor: '#ee0000'}} onClick={this.handleSubmit}>Login</Button>
               <Button variant='contained' style={{backgroundColor: '#ee0000'}} onClick={this.handleSwitch}>Register</Button>
               </form>
             )}
