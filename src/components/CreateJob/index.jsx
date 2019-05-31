@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
 export default class CreateJob extends React.Component{
 
   constructor(props){
@@ -27,6 +28,9 @@ export default class CreateJob extends React.Component{
   }
   handleSubmit(){
     console.log(this.state)
+    axios.post('http://localhost:80/api',this.state).then(doc=>{
+      console.log(doc.data)
+    })
   }
   handleNewInput(){
     this.setState(state =>{
