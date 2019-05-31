@@ -63,7 +63,7 @@ class EmployTT extends React.Component{
                     Job Description: {this.state.description}
                 </Typography>
                 </ExpansionPanelDetails>
-          </ExpansionPanel>
+            </ExpansionPanel>
         );
     }
 }
