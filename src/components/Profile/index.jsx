@@ -64,7 +64,7 @@ class EmployTT extends React.Component {
 
   editProfileCard(){
     if (this.state.editPCard){
-      axios.post("http://localhost:80/api/pUpdate", this.state).then(doc => {
+      axios.post("http://localhost:80/api/pupdate", this.state).then(doc => {
         return doc;
       });
     }
