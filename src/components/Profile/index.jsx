@@ -4,10 +4,11 @@ import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
+import Icon from '@material-ui/core/Icon';
+import Fab from '@material-ui/core/Fab';
 import axios from "axios";
 
 const styles = {
@@ -16,36 +17,42 @@ const styles = {
     width: 300,
     height: 300,
   },
+  fab: {
+    margin: 1,
+  },
 };
 class EmployTT extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      address: "",
-      email: "",
-      number: "",
-      photo: "",
+      Name: "",
+      Address: "",
+      Email: "",
+      PhoneContact: "",
+      Photo: "",
       resume: "",
       resumeFields: [],
+      editPCard: false,
     };
+    this.editProfileCard = this.editProfileCard.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentWillMount() {
     axios.get("http://localhost:80/api/name").then(doc => {
-      this.setState({ name: doc.data });
+      this.setState({ Name: doc.data.Name });
     });
     axios.get("http://localhost:80/api/addr").then(doc => {
-    this.setState({ address: doc.data });
+    this.setState({ Address: doc.data.Address });
     });
     axios.get("http://localhost:80/api/email").then(doc => {
-      this.setState({ email: doc.data });
+      this.setState({ Email: doc.data.Email });
     });
     axios.get("http://localhost:80/api/number").then(doc => {
-      this.setState({ number: doc.data });
+      this.setState({ PhoneContact: doc.data.PhoneContact });
     });
-    axios.get("http://localhost:80/api/photo").then(doc => {
-      this.setState({ photo: doc.data });
+    axios.get("https://dog.ceo/api/breeds/image/random").then(doc => {
+      this.setState({ Photo: doc.data.message });
     });
     axios.get("http://localhost:80/api/resume").then(doc => {
       this.setState({ resume: doc.data });
@@ -55,9 +62,29 @@ class EmployTT extends React.Component {
     });
   }
 
+  editProfileCard(){
+    if (this.state.editPCard){
+      axios.post("http://localhost:80/api/pupdate", this.state).then(doc => {
+        return doc;
+      });
+    }
+    this.setState({editPCard: !this.state.editPCard})
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   render(){
     const { classes } = this.props;
-    
+    const editPCard = this.state.editPCard;
+
     var resumeLayout= this.state.resumeFields.map(function(resumeField){
       return <Grid container>
               <Card>
@@ -76,33 +103,64 @@ class EmployTT extends React.Component {
               </Card>
             </Grid>
     })
-
+    var mailto = "mailto:" + this.state.Email;
     return (
         <div>
+        {!editPCard ? (
         <Grid container justify="center" alignItems="center">
           <Card>
-            <CardActionArea>
-              <Avatar alt="Richard Stonebank" src={this.state.photo.Image} className={classes.avatar} />        
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {this.state.name.Name}
-                </Typography>
-                <Typography variant="body1" component="p">
-                  Email: <a href="mailto:{this.state.email.Email}">{this.state.email.Email}</a>
-                </Typography>
-                <Typography variant="body1" component="p">
-                  Address: {this.state.address.Address}
-                </Typography>
-                <Typography variant="body1" component="p">
-                  Contact Number: {this.state.number.PhoneContact}
-                </Typography>
-              </CardContent>           
-            </CardActionArea>
+            <Avatar alt="Richard Stonebank" src={this.state.Photo} className={classes.avatar} />        
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Name: {this.state.Name}
+              </Typography>
+              <Typography variant="body1" component="p">
+                Email: <a href={mailto}>{this.state.Email}</a>
+              </Typography>
+              <Typography variant="body1" component="p">
+                Address: {this.state.Address}
+              </Typography>
+              <Typography variant="body1" component="p">
+                Contact Number: {this.state.PhoneContact}
+              </Typography>
+              <Grid container justify="flex-end" alignItems="center" >
+                <Fab color="secondary" aria-label="Edit" className={classes.fab} onClick={this.editProfileCard}>
+                  <Icon>edit_icon</Icon>
+                </Fab>
+              </Grid>      
+            </CardContent>        
           </Card>
         </Grid>
-
-        <resumeLayout>
-        </resumeLayout>
+        ):(
+          <Grid container justify="center" alignItems="center">
+          <Card>
+            <Avatar alt="Richard Stonebank" src={this.state.Photo} className={classes.avatar} />        
+            <CardContent>
+                <form>
+                  <label>
+                    <h3>
+                      Name: <input type="text" value={this.state.Name} name="Name" onChange={this.handleInputChange}/>
+                    </h3>
+                  </label>
+                  <label>
+                      Address: <input type="text" value={this.state.Address} name="Address" onChange={this.handleInputChange}/>
+                  </label>
+                  <br/>
+                  <br/>
+                  <label>
+                      Contact Number: <input type="text" value={this.state.PhoneContact} name="PhoneContact" onChange={this.handleInputChange}/>
+                  </label>
+                </form>
+              <Grid container justify="flex-end" alignItems="center" >
+                <Fab color="secondary" aria-label="Edit" className={classes.fab} onClick={this.editProfileCard}>
+                  <Icon>edit_icon</Icon>
+                </Fab>
+              </Grid>      
+            </CardContent>    
+          </Card>
+        </Grid>
+        )}
+        {resumeLayout}
         </div>
       );
     }
