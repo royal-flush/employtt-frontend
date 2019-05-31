@@ -28,22 +28,13 @@ class EmployTT extends React.Component{
         this.state = {
         title:'Software Engineer',
         ministry:'IGovTT',
-        description:'',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.',
         status: 'Awaiting Response',
-        };
-        this.ControlledExpansionPanels = this.ControlledExpansionPanels.bind(this);
-    }
-
-    ControlledExpansionPanels() {
-        const [expanded, setExpanded] = React.useState(false);
-      
-        const handleChange = panel => (event, isExpanded) => {
-          setExpanded(isExpanded ? panel : false);
         };
     }
     
     render(){
-        const { classes } = this.props;
+        //const { classes } = this.props;
         return (
             /*
             <Grid>
@@ -58,15 +49,18 @@ class EmployTT extends React.Component{
                     </CardContent>
                 </Card>
             </Grid>*/
-            <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+            <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
-                <Typography className={classes.heading}>General settings</Typography>
-                <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
+                <Typography gutterBottom variant="h4" component="h2">
+                    Job: {this.state.title} at {this.state.ministry}
+                </Typography>
+                <Typography variant="h5" component="h2" align="right">
+                    Status: {this.state.status}
+                </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                 <Typography>
-                    Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-                    maximus est, id dignissim quam.
+                    Job Description: {this.state.description}
                 </Typography>
                 </ExpansionPanelDetails>
           </ExpansionPanel>
