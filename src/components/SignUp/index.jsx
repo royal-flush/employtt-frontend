@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Axios from 'axios';
 export default class SignUp extends React.Component{
   constructor(){
     super()
@@ -21,10 +22,18 @@ export default class SignUp extends React.Component{
       [e.target.name]: e.target.value
     })
   }
+
   handleSubmit(){
+<<<<<<< HEAD
     console.log(this.state)
     window.location.reload();
+=======
+    Axios.post("http://localhost:80/api/signup", this.state).then(doc => {
+      return doc;
+    });
+>>>>>>> 876e7767fa9fbf8af3c825ffc0208777dd70e155
   }
+
   render(){
     return(
       <form>
