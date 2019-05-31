@@ -11,23 +11,15 @@ export default class CreateJob extends React.Component{
       title:'',
       category:'',
       ministry:'',
-      description:'',
-      location:'',
-      type:'',
-      experience:'',
-      education:'',
-      skills:'',
-      salary:'',
-
+      date:'',
+      new_input:'',
       categories:[],
       ministries:[],
-      locaions:[],
-      types:[],
-      salary_ranges:[],
-
+      inputs:[]
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleNewInput=this.handleNewInput.bind(this)
   }
 
   handleInputChange(e){
@@ -35,6 +27,13 @@ export default class CreateJob extends React.Component{
   }
   handleSubmit(){
     console.log(this.state)
+  }
+  handleNewInput(){
+    this.setState(state =>{
+      state.inputs.push({'name':state.new_input, 'value':''})
+      console.log(state.inputs)
+    })
+    this.forceUpdate()
   }
   render(){
     const categories=[
@@ -90,93 +89,39 @@ export default class CreateJob extends React.Component{
           ))}
         </TextField>
         <TextField
-          id="standard-multiline-static"
-          label="Description"
-          multiline
-          rows="4"
-          placeholder="Description"
-          name='description'
-          style={{marginBottom:30}}
+          id="date"
+          label="Closing Date"
+          type="date"
+          defaultValue="2017-05-24"
+          name='date'
           onChange={this.handleInputChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          style={{marginBottom:30}}
+        />
+        {this.state.inputs.map(input =>(
+          <TextField
+            id='standard-password-input'
+            label={input.name}
+            key={input.name}
+            name={input.name}
+            onChange={(e)=>{input.value=e.target.value}}
           />
-          <TextField
-          select
-          variant="outlined"
-          label="Job Location"
-          value={this.state.location}
-          name='location'
-          style={{marginBottom:30}}
+        ))}
+        <TextField
+          id='standard-password-input'
+          label='New Field'
+          name='new_input'
+          style={{marginBottom: 30}}
           onChange={this.handleInputChange}
-          >
-          {categories.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-             {option.value}
-            </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-          select
-          variant="outlined"
-          label="Job Type"
-          value={this.state.type}
-          name='type'
-          style={{marginBottom:30}}
-          onChange={this.handleInputChange}
-          >
-          {categories.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-             {option.value}
-            </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="standard-multiline-static"
-            label="Experience"
-            multiline
-            rows="3"
-            placeholder="Experience"
-            name='experience'
-            onChange={this.handleInputChange}
-            style={{marginBottom:30}}
-            />
-            <TextField
-              id="standard-multiline-static"
-              label="Education"
-              multiline
-              rows="3"
-              placeholder="Education"
-              name='education'
-              onChange={this.handleInputChange}
-              style={{marginBottom:30}}
-              />
-              <TextField
-                id="standard-multiline-static"
-                label="Essentail Skills"
-                multiline
-                rows="3"
-                placeholder="Skills"
-                name='skills'
-                onChange={this.handleInputChange}
-                style={{marginBottom:30}}
-                />
-              <TextField
-              select
-              variant="outlined"
-              label="Salary Range"
-              value={this.state.salary}
-              name='salary'
-              onChange={this.handleInputChange}
-              style={{marginBottom:30}}
-              >
-              {categories.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                 {option.value}
-                </MenuItem>
-                ))}
-              </TextField>
-              <Button variant="contained" color="primary" onClick={this.handleSubmit}>
-                Create Job
-              </Button>
+        />
+        <Button variant="contained" color="primary" onClick={this.handleNewInput}>
+            Add Field
+        </Button>
+        <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+            Create Job
+        </Button>
       </Grid>
       </div>
     )
