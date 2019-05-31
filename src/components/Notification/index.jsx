@@ -7,6 +7,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import axios from "axios";
 
 const styles = {
     root: {
@@ -29,7 +30,6 @@ function Notif(props) {
     var ministry = props.ministry;
     var description = props.description;
     var status = props.status;
-    console.log(title);
     for (var i = 0; i < title.length; i++){
         rows.push(
         <ExpansionPanel style={{marginBottom: 30}}>
@@ -60,13 +60,26 @@ class EmployTT extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-        title:['Fab'],
-        ministry:['Fab'],
-        description:['Fab'],
-        status: ['Fab'],
+        title:[],
+        ministry:[],
+        description:[],
+        status: [],
         };
     }
     
+    componentWillMount(){
+        axios.get("http://localhost:80/api/notifs").then(doc => {
+            for(var x = 0; x<doc.data.length; x++){
+                this.setState(state => {
+                    state.title.push(doc.data[x].title)
+                    state.ministry.push(doc.data[x].ministry)
+                    state.description.push(doc.data[x].description)
+                    state.status.push(doc.data[x].status)
+                })
+            }
+        })
+    }
+
     render(){
         //const { classes } = this.props;
         return (
