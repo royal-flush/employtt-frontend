@@ -23,6 +23,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Profile from '../Profile';
 import Notification from '../Notification';
+import Badge from '@material-ui/core/Badge';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -163,15 +164,16 @@ class EmployTT extends React.Component {
                 <ListItemText primary="Profile" />
               </ListItem>
               </Link>
-              <Link to ='/user/notifications' style={{ textDecoration: 'none' }}>
-              <ListItem button key="Profile" onClick={this.handleDrawerClose}>
-                <ListItemIcon>
-                  <Notifications />
-                </ListItemIcon>
-                <ListItemText primary="Notifications" />
-              </ListItem>
-              </Link>
-
+                <Link to ='/user/notifications' style={{ textDecoration: 'none' }}>
+                <ListItem button key="Profile" onClick={this.handleDrawerClose}>
+                  <Badge className={classes.margin} badgeContent={0} color="primary">
+                    <ListItemIcon>
+                      <Notifications />
+                    </ListItemIcon>
+                  </Badge>
+                  <ListItemText primary="Notifications" />
+                </ListItem>
+                </Link>
           </List>
           <Divider />
           <List>
