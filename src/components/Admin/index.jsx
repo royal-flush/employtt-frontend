@@ -23,6 +23,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Profile from '../Profile';
 import CreateJob from '../CreateJob';
+import AdminPage from '../AdminPage';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -183,7 +184,8 @@ class EmployTT extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <Route exact path="/admin/profile" component={Profile} />
+            <Route exact path="/admin" component={AdminPage} />
+            <Route path="/admin/profile" component={Profile} />
             <Route path="/admin/createjob" component={CreateJob} />
         </main>
       </div>
