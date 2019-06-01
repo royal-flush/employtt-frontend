@@ -44,25 +44,26 @@ class EmployTT extends React.Component {
   }
 
   componentWillMount() {
-    axios.get("http://localhost:80/api/name").then(doc => {
+    axios.post("http://localhost:100/api/name", this.state).then(doc => {
+      return doc;
       this.setState({ Name: doc.data.Name });
     });
-    axios.get("http://localhost:80/api/addr").then(doc => {
+    axios.post("http://localhost:100/api/addr", this.state).then(doc => {
     this.setState({ Address: doc.data.Address });
     });
-    axios.get("http://localhost:80/api/email").then(doc => {
+    axios.post("http://localhost:100/api/email", this.state).then(doc => {
       this.setState({ Email: doc.data.Email });
     });
-    axios.get("http://localhost:80/api/number").then(doc => {
+    axios.post("http://localhost:100/api/number", this.state).then(doc => {
       this.setState({ PhoneContact: doc.data.PhoneContact });
     });
     axios.get("https://dog.ceo/api/breeds/image/random").then(doc => {
       this.setState({ Photo: doc.data.message });
     });
-    axios.get("http://localhost:80/api/resume").then(doc => {
+    axios.get("http://localhost:100/api/resume").then(doc => {
       this.setState({ resume: doc.data });
     });
-    axios.get("http://localhost:80/api/rFields").then(doc => {
+    axios.get("http://localhost:100/api/rFields").then(doc => {
       this.setState({ resumeFields: doc.data });
     });
     this.setState({UID: JSON.parse(localStorage.getItem('user_credentails')).UID})

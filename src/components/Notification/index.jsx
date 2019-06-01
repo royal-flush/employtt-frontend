@@ -74,7 +74,7 @@ class EmployTT extends React.Component{
     }
 
     componentWillMount(){
-        axios.get("http://localhost:80/api/notifs").then(doc => {
+        axios.get("http://localhost:100/api/notifs").then(doc => {
             for(var x = 0; x<doc.data.length; x++){
                 this.setState(state => {
                     state.position.push(doc.data[x].position)

@@ -34,7 +34,7 @@ export default class CreateJob extends React.Component{
   }
   handleSubmit(){
     console.log(this.state)
-    axios.post('http://localhost:80/api',this.state).then(doc=>{
+    axios.post('http://localhost:100/api',this.state).then(doc=>{
       console.log(doc.data)
     })
   }

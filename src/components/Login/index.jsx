@@ -46,7 +46,7 @@ export default class LoginScreen extends React.Component{
   handleSubmit(){
     var logEmail = '';
     var logUid = '';
-    axios.post("http://localhost:80/api/login", this.state).then(doc => {
+    axios.post("http://localhost:100/api/login", this.state).then(doc => {
       logEmail = doc.data.Email;
       logUid = doc.data.UserID;
       localStorage.setItem('user_credentails', JSON.stringify({email:logEmail, UID:logUid}))

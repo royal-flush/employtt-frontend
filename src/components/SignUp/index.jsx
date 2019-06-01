@@ -28,7 +28,7 @@ export default class SignUp extends React.Component{
   }
   handleSubmit(){
     console.log(this.state)
-    axios.post("http://localhost:80/api/signup", this.state).then(doc => {
+    axios.post("http://localhost:100/api/signup", this.state).then(doc => {
       return doc;
     });
     window.location.reload();
