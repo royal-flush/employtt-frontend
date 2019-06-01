@@ -24,6 +24,9 @@ const styles = {
     },
 };
 
+/**
+  This function is used to render notifcation infromation a job seeker will receive.
+*/
 function Notif(props) {
     var rows = [];
     var position = props.position;
@@ -56,6 +59,9 @@ function Notif(props) {
     return rows;
 }
 
+/**
+  The component is used to pull all the notifcations data and populate the states.
+*/
 class EmployTT extends React.Component{
     constructor(props) {
         super(props);
@@ -66,7 +72,7 @@ class EmployTT extends React.Component{
         status: [],
         };
     }
-    
+
     componentWillMount(){
         axios.get("http://localhost:80/api/notifs").then(doc => {
             for(var x = 0; x<doc.data.length; x++){

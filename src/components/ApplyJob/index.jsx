@@ -12,7 +12,9 @@ import axios from "axios";
 const styles = {
 
 };
-
+/**
+  This is used to render all the jobs as an individual card.
+*/
 function Jobs(props){
     var rows = [];
     var position = props.position;
@@ -49,6 +51,9 @@ function Jobs(props){
     return rows;
 }
 
+/**
+  The components pull all the open job data and populates the states.
+*/
 class EmployTT extends React.Component {
     constructor(props) {
         super(props);
