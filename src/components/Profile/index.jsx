@@ -44,17 +44,19 @@ class EmployTT extends React.Component {
   }
 
   componentWillMount() {
-    axios.post("http://localhost:100/api/name", this.state).then(doc => {
-      return doc;
+    const login=JSON.parse(localStorage.getItem('user_credentails'))
+    console.log(login.UID)
+    this.setState({UID: login.UID})
+    axios.post("http://localhost:100/api/name", login).then(doc => {
       this.setState({ Name: doc.data.Name });
     });
-    axios.post("http://localhost:100/api/addr", this.state).then(doc => {
+    axios.post("http://localhost:100/api/addr", login).then(doc => {
     this.setState({ Address: doc.data.Address });
     });
-    axios.post("http://localhost:100/api/email", this.state).then(doc => {
+    axios.post("http://localhost:100/api/email", login).then(doc => {
       this.setState({ Email: doc.data.Email });
     });
-    axios.post("http://localhost:100/api/number", this.state).then(doc => {
+    axios.post("http://localhost:100/api/number", login).then(doc => {
       this.setState({ PhoneContact: doc.data.PhoneContact });
     });
     axios.get("https://dog.ceo/api/breeds/image/random").then(doc => {
@@ -66,7 +68,6 @@ class EmployTT extends React.Component {
     axios.get("http://localhost:100/api/rFields").then(doc => {
       this.setState({ resumeFields: doc.data });
     });
-    this.setState({UID: JSON.parse(localStorage.getItem('user_credentails')).UID})
   }
 
   editProfileCard(){
