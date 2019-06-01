@@ -25,6 +25,7 @@ class EmployTT extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      UID: "",
       Name: "",
       Address: "",
       Email: "",
@@ -60,6 +61,7 @@ class EmployTT extends React.Component {
     axios.get("http://localhost:80/api/rFields").then(doc => {
       this.setState({ resumeFields: doc.data });
     });
+    this.setState({UID: JSON.parse(localStorage.getItem('user_credentails')).UID})
   }
 
   editProfileCard(){

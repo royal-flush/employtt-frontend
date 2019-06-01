@@ -22,10 +22,12 @@ export default class LoginScreen extends React.Component{
 
   componentWillMount(){
     const login=JSON.parse(localStorage.getItem('user_credentails'))
+    console.log(login)
     if(login){
       this.setState({
         email: login.email,
-        password: login.password
+        password: login.password,
+        UID: login.UID,
       })
     }
   }
@@ -35,10 +37,15 @@ export default class LoginScreen extends React.Component{
     })
   }
   handleSubmit(){
-    localStorage.setItem('user_credentails', JSON.stringify({email:this.state.email, password:this.state.password}))
+    var logEmail = '';
+    var logUid = '';
     axios.post("http://localhost:80/api/login", this.state).then(doc => {
+      console.log(doc.data)
+      logEmail = doc.data.Email;
+      logUid = doc.data.UserID;
       return doc;
     });
+    localStorage.setItem('user_credentails', JSON.stringify({email:logEmail, UID:logUid}))
   }
   render(){
     return (

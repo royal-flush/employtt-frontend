@@ -26,17 +26,17 @@ const styles = {
 
 function Notif(props) {
     var rows = [];
-    var title = props.title;
-    var ministry = props.ministry;
-    var description = props.description;
-    var status = props.status;
-    for (var i = 0; i < title.length; i++){
+    var position = props.position;
+    var ministry = props.Ministry;
+    var description = props.Description;
+    var status = props.Status;
+    for (var i = 0; i < position.length; i++){
         rows.push(
         <ExpansionPanel style={{marginBottom: 30}}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
             <Grid container justify="flex-start" alignItems="center">
                 <Typography gutterBottom variant="h4" component="h2">
-                    Job: {title[i]} at {ministry[i]}
+                    Job: {position[i]} at {ministry[i]}
                 </Typography>
             </Grid>
             <Grid container justify="flex-end" alignItems="center">
@@ -96,7 +96,7 @@ class EmployTT extends React.Component{
                     </CardContent>
                 </Card>
             </Grid>*/
-            <Notif title={this.state.title} ministry={this.state.ministry} description={this.state.description} status={this.state.status}></Notif>
+            <Notif title={this.state.position} ministry={this.state.ministry} description={this.state.description} status={this.state.status}></Notif>
         );
     }
 }
