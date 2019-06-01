@@ -21,6 +21,7 @@ import Notifications from '@material-ui/icons/Notifications'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Profile from '../Profile';
 import Notification from '../Notification';
+import ApplyJob from '../ApplyJob';
 import Badge from '@material-ui/core/Badge';
 const drawerWidth = 240;
 
@@ -176,6 +177,7 @@ class EmployTT extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          <Route exact path="/user" component={ApplyJob}/>
             <Route exact path="/user/profile" component={Profile}/>
             <Route path="/user/notifications" component={Notification} />
         </main>
