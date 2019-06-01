@@ -18,12 +18,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Profile from '../Profile';
 import CreateJob from '../CreateJob';
 import AdminPage from '../AdminPage';
+import Metrics from '../Metrics'
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -170,23 +170,22 @@ class EmployTT extends React.Component {
                 <ListItemText primary="Create Job" />
               </ListItem>
               </Link>
-
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text} onClick={this.handleDrawerClose}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+              <Link to ='/admin/metrics' style={{ textDecoration: 'none' }}>
+              <ListItem button key="Metrics" onClick={this.handleDrawerClose}>
+                <ListItemIcon>
+                  <LibraryBooks />
+                </ListItemIcon>
+                <ListItemText primary="Create Job" />
               </ListItem>
-            ))}
-          </List>
+              </Link>
+            </List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
             <Route exact path="/admin" component={AdminPage} />
             <Route path="/admin/profile" component={Profile} />
             <Route path="/admin/createjob" component={CreateJob} />
+            <Route path="/admin/metrics" component={Metrics} />
         </main>
       </div>
       </Router>

@@ -1,16 +1,16 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
 
 export default class AdminSignUp extends React.Component{
   constructor(){
     super()
     this.state={
+      fname:'',
+      lname:'',
       email:'',
       v_email:'',
       ministry:'',
-      phoneNumber:'',
       password:'',
     }
     this.handleChange=this.handleChange.bind(this)
@@ -23,14 +23,29 @@ export default class AdminSignUp extends React.Component{
   }
   handleSubmit(){
     console.log(this.state)
-    axios.post("http://localhost:80/api/adminSignup", this.state).then(doc => {
-      return doc;
-    });
     window.location.reload();
   }
   render(){
     return(
       <form>
+      <TextField
+        id="standard-dense"
+        label="First Name"
+        type='text'
+        name='fname'
+        onChange={this.handleChange}
+        style={{margin:30}}
+        margin="dense"
+      />
+      <TextField
+        id="standard-dense"
+        label="Last Name"
+        type='text'
+        name='lname'
+        onChange={this.handleChange}
+        style={{margin:30}}
+        margin="dense"
+      />
       <TextField
         id='standard-dense'
         label='Ministry/Department/Agency'
@@ -63,15 +78,6 @@ export default class AdminSignUp extends React.Component{
         label="Password"
         type='password'
         name='password'
-        onChange={this.handleChange}
-        style={{margin:30}}
-        margin="dense"
-      />
-      <TextField
-        id="standard-dense"
-        label="Phone Number"
-        type='text'
-        name='phoneNumber'
         onChange={this.handleChange}
         style={{margin:30}}
         margin="dense"
