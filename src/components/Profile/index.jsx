@@ -21,6 +21,10 @@ const styles = {
     margin: 1,
   },
 };
+
+/**
+  This component is use to pull the users profile info and show it in a readly fashion.
+*/
 class EmployTT extends React.Component {
   constructor(props) {
     super(props);
