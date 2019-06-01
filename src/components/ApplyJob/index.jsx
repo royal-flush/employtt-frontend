@@ -53,10 +53,10 @@ class EmployTT extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            position:["Test"],
-            category:["Test"],
-            ministry:["Test"],
-            date:["Test"],
+            position:[],
+            category:[],
+            ministry:[],
+            date:[],
         };
     }
 

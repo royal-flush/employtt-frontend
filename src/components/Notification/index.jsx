@@ -60,7 +60,7 @@ class EmployTT extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            position:[],
+        position:[],
         ministry:[],
         description:[],
         status: [],
