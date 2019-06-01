@@ -7,6 +7,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Add from '@material-ui/icons/Add'
 
 import axios from 'axios';
+/**
+  This component renders the form to create a new job.
+*/
 export default class CreateJob extends React.Component{
 
   constructor(props){
@@ -35,6 +38,9 @@ export default class CreateJob extends React.Component{
       console.log(doc.data)
     })
   }
+  /**
+    This method creates the custom fields.
+  */
   handleNewInput(){
     this.setState(state =>{
       state.inputs.push({'name':state.new_input, 'value':''})
@@ -51,6 +57,18 @@ export default class CreateJob extends React.Component{
         value:'Construction'
       },
     ]
+    const ministries=[
+      {
+        value:'Finance'
+      },
+      {
+        value:'Construction'
+      },
+    ]
+    /**
+        This is the form is used to create a job.
+        Admins also have the ability add custom fields to a job.
+    */
     return(
       <div>
       <h1>Create Job</h1>
@@ -89,7 +107,7 @@ export default class CreateJob extends React.Component{
         style={{marginBottom:30}}
         onChange={this.handleInputChange}
         >
-        {categories.map(option => (
+        {ministries.map(option => (
           <MenuItem key={option.value} value={option.value}>
            {option.value}
           </MenuItem>

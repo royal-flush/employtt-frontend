@@ -24,8 +24,13 @@ import Profile from '../Profile';
 import CreateJob from '../CreateJob';
 import AdminPage from '../AdminPage';
 import Metrics from '../Metrics'
-const drawerWidth = 240;
 
+/**
+  This page is used as an access point to all the administrator pages
+  specifically the profile page, create job and view metrics of created
+  jobs.
+*/
+const drawerWidth = 240;
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -90,6 +95,10 @@ const styles = theme => ({
   },
 });
 
+/**
+  This class renders the main design for this page with and app bar and
+  a side bar to do the to navigation to the rescpective pages.
+*/
 class EmployTT extends React.Component {
   state = {
     open: false,
@@ -154,7 +163,7 @@ class EmployTT extends React.Component {
           </div>
           <Divider />
           <List>
-            <Link to ='/admin/profile' style={{ textDecoration: 'none' }}>
+            <Link to ='/admin/' style={{ textDecoration: 'none' }}>
               <ListItem button key="Profile" onClick={this.handleDrawerClose}>
                 <ListItemIcon>
                   <AccountCircle />
@@ -175,15 +184,17 @@ class EmployTT extends React.Component {
                 <ListItemIcon>
                   <LibraryBooks />
                 </ListItemIcon>
-                <ListItemText primary="Create Job" />
+                <ListItemText primary="Metrics" />
               </ListItem>
               </Link>
             </List>
         </Drawer>
+        {/**
+          This is where the pages are renderd with specific routes.
+          */}
         <main className={classes.content}>
           <div className={classes.toolbar} />
-            <Route exact path="/admin" component={AdminPage} />
-            <Route path="/admin/profile" component={Profile} />
+            <Route exact path="/admin/" component={Profile} />
             <Route path="/admin/createjob" component={CreateJob} />
             <Route path="/admin/metrics" component={Metrics} />
         </main>

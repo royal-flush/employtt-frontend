@@ -2,6 +2,9 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+/**
+  This component is used for administrator to create thrir accounts.
+*/
 export default class AdminSignUp extends React.Component{
   constructor(){
     super()
@@ -26,6 +29,9 @@ export default class AdminSignUp extends React.Component{
     window.location.reload();
   }
   render(){
+    {/**
+      This form is used by admin to register. I takes the their name, emal, they ministry they belong to and password.
+      */}
     return(
       <form>
       <TextField

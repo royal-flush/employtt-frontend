@@ -2,6 +2,10 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+
+/**
+  This component is by job seeker to reister for and account.
+*/
 export default class SignUp extends React.Component{
   constructor(){
     super()
@@ -30,6 +34,9 @@ export default class SignUp extends React.Component{
     window.location.reload();
   }
   render(){
+    /**
+      This render the form the job seeker are required to fillout and reloads the page upon completion.
+    */
     return(
       <form>
       <TextField
