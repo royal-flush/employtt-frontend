@@ -60,7 +60,7 @@ class EmployTT extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-        title:[],
+            position:[],
         ministry:[],
         description:[],
         status: [],
@@ -71,7 +71,7 @@ class EmployTT extends React.Component{
         axios.get("http://localhost:80/api/notifs").then(doc => {
             for(var x = 0; x<doc.data.length; x++){
                 this.setState(state => {
-                    state.title.push(doc.data[x].title)
+                    state.position.push(doc.data[x].position)
                     state.ministry.push(doc.data[x].ministry)
                     state.description.push(doc.data[x].description)
                     state.status.push(doc.data[x].status)
@@ -96,7 +96,7 @@ class EmployTT extends React.Component{
                     </CardContent>
                 </Card>
             </Grid>*/
-            <Notif title={this.state.position} ministry={this.state.ministry} description={this.state.description} status={this.state.status}></Notif>
+            <Notif position={this.state.position} ministry={this.state.ministry} description={this.state.description} status={this.state.status}></Notif>
         );
     }
 }
