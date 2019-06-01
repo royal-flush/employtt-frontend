@@ -7,6 +7,12 @@ import TextField from '@material-ui/core/TextField';
 import SignUp from '../SignUp';
 import AdminSignUp from '../AdminSignUp'
 import axios from 'axios';
+
+/**
+  This screen is first screen every users see (both job seeker and admins).
+  There are options to sign up for both job seekers and admins.
+  It will render the page based on their choice.
+*/
 export default class LoginScreen extends React.Component{
   constructor(){
     super()

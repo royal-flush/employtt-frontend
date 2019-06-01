@@ -5,6 +5,10 @@ import Typography from '@material-ui/core/Typography';
 
 import axios from 'axios'
 
+/**
+  This component is used the render the metrics of each job created by
+  the admin.
+*/
 export default class Metrics extends React.Component{
   constructor(){
     super()
