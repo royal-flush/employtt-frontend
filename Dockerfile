@@ -12,4 +12,4 @@ RUN yarn add react-scripts@3.0.1 -g --silent
 COPY . /app
 CMD ["yarn", "start"]
 
-EXPOSE 3001
+EXPOSE 80
